@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+.bg_1 {
+  background-image: url("~src/assets/bg_1.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
