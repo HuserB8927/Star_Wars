@@ -1,5 +1,8 @@
-
-body {
-  background-image: url("/src/assets/bg_1.jpg");
+.bg_1 {
+  background-image: url("~src/assets/bg_1.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
