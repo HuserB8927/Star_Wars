@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 400) {
-
       console.error({"error": "Nincs ApplicantId"});
     } else if (error.status === 405) {
       console.error({"error": "Method Not Allowed"});
@@ -46,6 +45,9 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.form.value).subscribe(
       resp => {
 
+      },
+      error => {
+        this.handleError(error);
       }
     )
   }
