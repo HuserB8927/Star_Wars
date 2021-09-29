@@ -1,0 +1,14 @@
+.bg_2 {
+  background-image: url("~src/assets/bg_2.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+@font-face {
+  font-family: "PoppinBold";
+  src: local("PoppinBold"), url("~src/assets/fonts/Poppins-Bold.ttf") format("truetype");
+}
