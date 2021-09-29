@@ -1,0 +1,6 @@
+{
+  "/rest": {
+    "target": "https://developer.webstar.hu",
+    "secure": true
+  }
+}

@@ -1,5 +1,4 @@
 export interface LoginInputCommandsModel {
-  //ApplicantId: "gAHra2TrHNXA7LMX";
-  userName: string;
+  username: string;
   password: string;
 }

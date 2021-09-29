@@ -3,9 +3,9 @@
     <div id="formContent">
       <form [formGroup]="form">
         <label class="wrapper" style="color: white">Felhasználónév</label>
-        <input class="fadeIn second" name="login" formControlName="userName" type="text" id="userName">
+        <input class="fadeIn second" name="username" formControlName="username" type="text" id="username">
         <div><small
-          *ngIf="!form.get('userName').valid && form.get('userName').touched" class="text-danger">
+          *ngIf="!form.get('username').valid && form.get('username').touched" class="text-danger">
           Please enter your username</small></div>
         <div style="margin-bottom: 50px">
         <label class="wrapper" style="color: white">Jelszó</label>

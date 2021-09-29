@@ -12,8 +12,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  userName = '';
-  password = '';
+
 
   login: LoginInputCommandsModel;
 
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-        userName: ['', Validators.required],
+        username: ['', Validators.required],
         password: ['', Validators.required],
       }
     );
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.form.value).subscribe(
       resp => {
-
+        console.log(resp);
       },
       error => {
         this.handleError(error);
