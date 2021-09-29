@@ -12,3 +12,12 @@
   font-family: "PoppinBold";
   src: local("PoppinBold"), url("~src/assets/fonts/Poppins-Bold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "PoppinsBlack";
+  src: local("PoppinsBlack"), url("~src/assets/fonts/Poppins-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: "PoppinsRegular";
+  src: local("PoppinsRegular"), url("~src/assets/fonts/Poppins-Regular.ttf") format("truetype");
+}

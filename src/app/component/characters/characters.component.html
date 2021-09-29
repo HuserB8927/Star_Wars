@@ -1,9 +1,49 @@
 <div class="bg_2">
-    <div class="user container" style="color: white; padding-top: 100px">
-      <img style="float: left; padding-right: 10px" class src="assets/user.png" alt="">
-      <p style="color: white; font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px">Felvételiző pilóta</p>
-      <p style="color: white; font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; float: right">Űrhajó elhagyása</p>
-      <img style="float: right; padding-right: 10px" class src="assets/logout.png" alt="">
-      <hr>
+  <div class="container" style="color: white; padding-top: 100px">
+    <div class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a style="color: white; font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px"
+           class="navbar-brand" href="#"><img style="padding-right: 10px" src="assets/user.png" alt="">Felvételiző
+          pilóta</a>
+        <a
+          style="color: white; font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; padding-right: 10px"
+          class="btn">Űrhajó
+          elhagyása <img class src="assets/logout.png" alt=""></a>
+      </div>
     </div>
+    <hr>
+    <p style="color: white; font-family: PoppinsBlack, Arial, Helvetica, sans-serif; font-size: 24px">Válassz két
+      harcost
+      az ellenkező oldalakból!</p>
+
+    <div *ngFor="let char of characters">
+    <div>
+
+      <label style="font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; color: #F7B500"
+             class="form-check-label">Oldal: {{char.side}}</label>
+    </div>
+    <div>
+      <label style="font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; color: #F7B500"
+             class="form-check-label">Különleges erő: {{char.power}}</label>
+    </div>
+    <div>
+
+      <label style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif; font-size: 90px; color: white"
+             class="form-check-label">{{char.name}}</label>
+    </div>
+    <div>
+      <a class="btn btn-outline-warning"
+         style="font-family: 'PoppinBold', Arial, Helvetica, sans-serif; font-size: 16px; color: white">Kiválasztom</a>
+    </div>
+    <div>
+      <label style="font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; color: white"
+             class="form-check-label">Leírás</label>
+    </div>
+    <div>
+      <a style="font-family: 'PoppinsRegular', Arial, Helvetica, sans-serif; font-size: 16px; color: white">{{char.description}}
+      </a>
+    </div>
+  </div>
+  </div>
 </div>
+
