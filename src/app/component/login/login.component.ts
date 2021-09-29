@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {LoginService} from "../../service/login.service";
+import {LoginInputCommandsModel} from "../../model/loginInputCommands.model";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -6,10 +11,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  form: FormGroup;
+  userName = '';
+  password = '';
 
-  constructor() { }
+  login: LoginInputCommandsModel;
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private loginService: LoginService) {
   }
 
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+        userName: ['', Validators.required],
+        password: ['', Validators.required],
+      }
+    );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 400) {
+
+      console.error({"error": "Nincs ApplicantId"});
+    } else if (error.status === 405) {
+      console.error({"error": "Method Not Allowed"});
+    } else if (error.status === 500) {
+      console.error({"error": "Sikertelen azonosítás"});
+    }
+  }
+
+  onSubmit() {
+
+    this.loginService.login(this.form.value).subscribe(
+      resp => {
+
+      }
+    )
+  }
 }
