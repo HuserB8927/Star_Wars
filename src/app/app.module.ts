@@ -13,12 +13,14 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FlexModule} from "@angular/flex-layout";
+import { CharactersComponent } from './component/characters/characters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    CharactersComponent
   ],
     imports: [
         BrowserModule,

@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.form.value).subscribe(
       resp => {
-        console.log(resp);
+        this.router.navigate(['/characters'])
       },
       error => {
         this.handleError(error);

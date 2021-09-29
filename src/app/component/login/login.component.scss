@@ -1,4 +1,22 @@
-/* STRUCTURE */
+body {
+  width: 100%;height: 100%;
+}
+.bg_1 {
+  background-image: url("~src/assets/bg_1.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@font-face {
+  font-family: "StarWars";
+  src: local("StarWars"), url("~src/assets/fonts/Starjedi.ttf") format("truetype");
+}
+@font-face {
+  font-family: "DistantGalaxy";
+  src: local("DistantGalaxy"), url("~src/assets/fonts/SfDistantGalaxyAltoutline-e2Bp.ttf") format("truetype");
+}
 
 .wrapper {
   display: flex;
