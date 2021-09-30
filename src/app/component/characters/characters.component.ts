@@ -1,18 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {CharacterListItemModel} from "../../model/characterListItem.model";
 import {CharacterService} from "../../service/character.service";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-import {SwiperOptions} from "swiper";
+
+declare const $:any;
+
 
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.scss']
+  styleUrls: ['./characters.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
+
 
   constructor(private characterService: CharacterService,
               private router: Router) {
@@ -27,7 +31,12 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    $('#carouselExampleCaptions').carousel()
   }
+
+
+
+
 
   private static handleError(error: HttpErrorResponse) {
     if (error.status === 400) {
@@ -37,55 +46,43 @@ export class CharactersComponent implements OnInit {
     }
   }
 
-    Images: Array<any> = [
-      {
-        src: "/assets/anakin.png",
-        alt: 'Image 1',
-      }, {
-        src: '/assets/boba.png',
-        alt: 'Image 2'
-      }, {
-        src: '/assets/grievous.png',
-        alt: 'Image 3'
-      }, {
-        src: '/assets/kenobi.png',
-        alt: 'Image 4'
-      }, {
-        src: '/assets/luke.png',
-        alt: 'Image 5'
-      }, {
-        src: '/assets/maul.png',
-        alt: 'Image 6'
-      }, {
-        src: '/assets/phasma.png',
-        alt: 'Image 6'
-      }, {
-        src: '/assets/rey.png',
-        alt: 'Image 6'
-      }, {
-        src: '/assets/solo.png',
-        alt: 'Image 6'
-      }, {
-        src: '/assets/stormtrooper.png',
-        alt: 'Image 6'
-      }, {
-        src: '/assets/vader.png',
-        alt: 'Image 6'
-      }, {
-        src: '/assets/yoda.png',
-        alt: 'Image 6'
-      }
-    ]
-
-  config: SwiperOptions = {
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    spaceBetween: 30
-  };
+  Images: Array<any> = [
+    {
+      src: "/assets/anakin.png",
+      alt: 'first',
+    }, {
+      src: '/assets/boba.png',
+      alt: 'second'
+    }, {
+      src: '/assets/grievous.png',
+      alt: 'third'
+    }, {
+      src: '/assets/kenobi.png',
+      alt: 'fourth'
+    }, {
+      src: '/assets/luke.png',
+      alt: 'sixth'
+    }, {
+      src: '/assets/maul.png',
+      alt: 'seventh'
+    }, {
+      src: '/assets/phasma.png',
+      alt: 'eighth'
+    }, {
+      src: '/assets/rey.png',
+      alt: 'ninth'
+    }, {
+      src: '/assets/solo.png',
+      alt: 'tenth'
+    }, {
+      src: '/assets/stormtrooper.png',
+      alt: 'eleventh'
+    }, {
+      src: '/assets/vader.png',
+      alt: 'twelve'
+    }, {
+      src: '/assets/yoda.png',
+      alt: 'thirteenth'
+    }
+  ]
 }

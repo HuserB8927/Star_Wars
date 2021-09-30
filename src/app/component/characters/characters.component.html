@@ -49,11 +49,28 @@
 
     <div class="col-6">
       <div>
-        <swiper [config]="config">
-          <ng-template swiperSlide *ngFor="let img of Images">
-            <img class="imgs" [src]="img.src" [alt]="img.alt">
-          </ng-template>
-        </swiper>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" >
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions"  *ngFor="let img of Images;let index = index" [attr.data-slide-to]="index"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active" *ngFor="let img of Images; let index = index;let isFirst = first" [ngClass]="{active:isFirst} ">
+              <img class="d-block w-100 imgs" [src]="img.src" [alt]="img.alt">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+          </a>
+        </div>
+
+
+
+
       </div>
     </div>
   </div>

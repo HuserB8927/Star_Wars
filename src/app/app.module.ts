@@ -37,6 +37,7 @@ import {SwiperModule} from "swiper/angular";
     BrowserAnimationsModule,
     FlexModule,
     SwiperModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
