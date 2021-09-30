@@ -4,18 +4,16 @@ import {CharacterService} from "../../service/character.service";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 
-declare const $:any;
-
 
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
+  showNavigationArrows = true;
 
 
   constructor(private characterService: CharacterService,
@@ -31,7 +29,6 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    $('#carouselExampleCaptions').carousel()
   }
 
 
@@ -46,40 +43,40 @@ export class CharactersComponent implements OnInit {
   Images: Array<any> = [
     {
       src: "/assets/anakin.png",
-      alt: 'first',
+      alt: 'anakin',
     }, {
       src: '/assets/boba.png',
-      alt: 'second'
+      alt: 'boba'
     }, {
       src: '/assets/grievous.png',
-      alt: 'third'
+      alt: 'grievous'
     }, {
       src: '/assets/kenobi.png',
-      alt: 'fourth'
+      alt: 'kenobi'
     }, {
       src: '/assets/luke.png',
-      alt: 'sixth'
+      alt: 'luke'
     }, {
       src: '/assets/maul.png',
-      alt: 'seventh'
+      alt: 'maul'
     }, {
       src: '/assets/phasma.png',
-      alt: 'eighth'
+      alt: 'phasma'
     }, {
       src: '/assets/rey.png',
-      alt: 'ninth'
+      alt: 'rey'
     }, {
       src: '/assets/solo.png',
-      alt: 'tenth'
+      alt: 'solo'
     }, {
       src: '/assets/stormtrooper.png',
-      alt: 'eleventh'
+      alt: 'stormtrooper'
     }, {
       src: '/assets/vader.png',
-      alt: 'twelve'
+      alt: 'vader'
     }, {
       src: '/assets/yoda.png',
-      alt: 'thirteenth'
+      alt: 'yoda'
     }
   ]
 }

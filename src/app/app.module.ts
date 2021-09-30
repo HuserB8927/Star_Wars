@@ -16,6 +16,7 @@ import {FlexModule} from "@angular/flex-layout";
 import {CharactersComponent} from './component/characters/characters.component';
 import {SimulationComponent} from './component/simulation/simulation.component';
 import {SwiperModule} from "swiper/angular";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {SwiperModule} from "swiper/angular";
     BrowserAnimationsModule,
     FlexModule,
     SwiperModule,
+    NgbModule,
 
   ],
   providers: [],
