@@ -35,9 +35,6 @@ export class CharactersComponent implements OnInit {
   }
 
 
-
-
-
   private static handleError(error: HttpErrorResponse) {
     if (error.status === 400) {
       console.error({"error": "Nincs ApplicantId"});
