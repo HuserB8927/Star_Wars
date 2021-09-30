@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CharacterListItemModel} from "../../model/characterListItem.model";
 import {CharacterService} from "../../service/character.service";
 import {Router} from "@angular/router";
@@ -18,19 +18,28 @@ export class CharactersComponent implements OnInit {
 
   constructor(private characterService: CharacterService,
               private router: Router) {
-    this.characterService.getCharacters().subscribe(
-      resp => {
-        this.characters = resp;
-      },
-      err => {
-        CharactersComponent.handleError(err);
+  }
+
+ngOnInit(): void {
+  this.characterService.getCharacters().subscribe(
+    resp => {
+      this.characters = resp;
+
+      for (let i = 0; i < this.characters.length; i++) {
+        for (let j = 0; j < this.Images.length; j++) {
+
+          if (this.characters[i].name === this.Images[j].alt) {
+            this.characters[i].url = this.Images[j].src;
+          }
+        }
       }
-    );
-  }
+    },
+    err => {
+      CharactersComponent.handleError(err);
+    }
+  );
 
-  ngOnInit(): void {
   }
-
 
   private static handleError(error: HttpErrorResponse) {
     if (error.status === 400) {

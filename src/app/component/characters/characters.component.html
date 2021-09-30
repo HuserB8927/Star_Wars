@@ -17,11 +17,11 @@
       <p style="color: white; font-family: PoppinsBlack, Arial, Helvetica, sans-serif; font-size: 24px">Válassz két
         harcost
         az ellenkező oldalakból!</p>
-      <div>
+      <div *ngFor="let character of characters;">
         <div>
 
           <label style="font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; color: #F7B500"
-                 class="form-check-label">Oldal:</label>
+                 class="form-check-label">Oldal: </label>
         </div>
         <div>
           <label style="font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; color: #F7B500"
