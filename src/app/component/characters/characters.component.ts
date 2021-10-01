@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CharacterListItemModel} from "../../model/characterListItem.model";
 import {CharacterService} from "../../service/character.service";
 import {Router} from "@angular/router";
@@ -13,31 +13,32 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
-  showNavigationArrows = true;
+
+   chosenCharacterToParent: any;
 
 
   constructor(private characterService: CharacterService,
               private router: Router) {
+    this.characterService.getCharacters().subscribe(
+      resp => {
+        this.characters = resp.characters;
+
+        /*for (let i = 0; i < this.characters.length; i++) {
+          for (let j = 0; j < this.Images.length; j++) {
+
+            if (this.characters[i].name === this.Images[j].alt) {
+              this.characters[i].url = this.Images[j].src;
+            }
+          }
+        }*/
+      },
+      err => {
+        CharactersComponent.handleError(err);
+      }
+    );
   }
 
-ngOnInit(): void {
-  this.characterService.getCharacters().subscribe(
-    resp => {
-      this.characters = resp;
-
-      for (let i = 0; i < this.characters.length; i++) {
-        for (let j = 0; j < this.Images.length; j++) {
-
-          if (this.characters[i].name === this.Images[j].alt) {
-            this.characters[i].url = this.Images[j].src;
-          }
-        }
-      }
-    },
-    err => {
-      CharactersComponent.handleError(err);
-    }
-  );
+  ngOnInit(): void {
 
   }
 
@@ -48,7 +49,6 @@ ngOnInit(): void {
       console.error({"error": "Method Not Allowed"});
     }
   }
-
   Images: Array<any> = [
     {
       src: "/assets/anakin.png",
@@ -88,4 +88,13 @@ ngOnInit(): void {
       alt: 'yoda'
     }
   ]
+
+  userIndex: number = 0;
+
+  changeIndex(number: number) {
+    if (this.Images[this.userIndex] > 0 && number < 0 ||
+      this.Images[this.userIndex] < Image.length && number > 0 ) {
+      this.Images[this.userIndex] += number;
+    }
+  }
 }

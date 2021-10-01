@@ -17,11 +17,11 @@
       <p style="color: white; font-family: PoppinsBlack, Arial, Helvetica, sans-serif; font-size: 24px">Válassz két
         harcost
         az ellenkező oldalakból!</p>
-      <div *ngFor="let character of characters;">
+      <div>
         <div>
 
           <label style="font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; color: #F7B500"
-                 class="form-check-label">Oldal: {{character.side}} </label>
+                 class="form-check-label">Oldal: </label>
         </div>
         <div>
           <label style="font-family: PoppinBold, Arial, Helvetica, sans-serif; font-size: 16px; color: #F7B500"
@@ -47,16 +47,23 @@
       </div>
     </div>
     <div class="col-6">
-      <div>
-        <ngb-carousel *ngIf="Images" [showNavigationArrows]="showNavigationArrows">
+
+      <!--<div>
+        <ngb-carousel *ngIf="Images">
           <ng-template ngbSlide *ngFor="let image of Images">
             <div class="picsum-img-wrapper">
               <img class="imgs" [src]="image.src" [alt]="image.alt">
             </div>
           </ng-template>
         </ngb-carousel>
-      </div>
-    </div>
+      </div>-->
+
+
+      <div *ngFor="let i of Images | slice:1:2"><img class="imgs" [src]="i.src" [alt]="i.alt"></div>
+      <button (click)="changeIndex(-1);">Previous</button>
+      <button (click)="changeIndex(1);">Next</button>
+
   </div>
+</div>
 </div>
 </div>

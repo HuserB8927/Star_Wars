@@ -19,6 +19,6 @@ export class CharacterService {
   }
 
   getCharacters(): Observable<any> {
-    return this.http.get('https://developer.webstar.hu/rest/frontend-felveteli/characters/', httpOptions).pipe();
+    return this.http.get('https://developer.webstar.hu/rest/frontend-felveteli/characters/', httpOptions);
   }
 }

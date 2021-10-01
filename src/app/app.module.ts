@@ -17,6 +17,7 @@ import {CharactersComponent} from './component/characters/characters.component';
 import {SimulationComponent} from './component/simulation/simulation.component';
 import {SwiperModule} from "swiper/angular";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GetCharactersComponent } from './component/get-characters/get-characters.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     NavbarComponent,
     CharactersComponent,
-    SimulationComponent
+    SimulationComponent,
+    GetCharactersComponent
   ],
   imports: [
     BrowserModule,
