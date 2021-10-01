@@ -13,8 +13,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
-
-   chosenCharacterToParent: any;
+  charactersToFight: string[] = [];
 
 
   constructor(private characterService: CharacterService,
@@ -23,14 +22,14 @@ export class CharactersComponent implements OnInit {
       resp => {
         this.characters = resp.characters;
 
-        /*for (let i = 0; i < this.characters.length; i++) {
+        for (let i = 0; i < this.characters.length; i++) {
           for (let j = 0; j < this.Images.length; j++) {
 
             if (this.characters[i].name === this.Images[j].alt) {
               this.characters[i].url = this.Images[j].src;
             }
           }
-        }*/
+        }
       },
       err => {
         CharactersComponent.handleError(err);
@@ -49,6 +48,7 @@ export class CharactersComponent implements OnInit {
       console.error({"error": "Method Not Allowed"});
     }
   }
+
   Images: Array<any> = [
     {
       src: "/assets/anakin.png",
@@ -91,10 +91,32 @@ export class CharactersComponent implements OnInit {
 
   userIndex: number = 0;
 
-  changeIndex(number: number) {
-    if (this.Images[this.userIndex] > 0 && number < 0 ||
-      this.Images[this.userIndex] < Image.length && number > 0 ) {
-      this.Images[this.userIndex] += number;
+  decreaseIndex() {
+    if (this.userIndex - 1 < 0) {
+      this.userIndex = this.Images.length - 1;
+    } else {
+      this.userIndex -= 1;
     }
+  }
+
+  increaseIndex() {
+    if (this.userIndex + 1 > this.Images.length - 1) {
+      this.userIndex = 0;
+    } else {
+      this.userIndex += 1;
+    }
+
+  }
+
+  choseCharacter(id: string) {
+   this.charactersToFight.push(id);
+
+   if (this.charactersToFight.length > 2) {
+     alert("You can chose only two characters");
+   }
+  }
+
+  goToFight() {
+    this.router.navigate(['/simulation'])
   }
 }

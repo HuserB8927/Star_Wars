@@ -26,3 +26,22 @@
   height:90%;
   width: 90%;
 }
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.align-right {
+  display: flex;
+  justify-content: right;
+  align-items: end;
+}
+.flip {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    margin-left: 20px;
+
+}

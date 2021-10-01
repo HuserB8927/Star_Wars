@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     CharactersComponent,
     SimulationComponent,
-    
+
   ],
   imports: [
     BrowserModule,

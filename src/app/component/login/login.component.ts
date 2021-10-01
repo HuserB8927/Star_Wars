@@ -13,9 +13,6 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class LoginComponent implements OnInit {
   form: FormGroup;
 
-
-  login: LoginInputCommandsModel;
-
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private loginService: LoginService) {
@@ -29,7 +26,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private static handleError(error: HttpErrorResponse) {
     if (error.status === 400) {
       console.error({"error": "Nincs ApplicantId"});
     } else if (error.status === 405) {
@@ -46,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/characters'])
       },
       error => {
-        this.handleError(error);
+        LoginComponent.handleError(error);
       }
     )
   }
