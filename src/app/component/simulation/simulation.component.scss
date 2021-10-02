@@ -7,3 +7,8 @@
   height: 100%;
   width: 100%;
 }
+
+@font-face {
+  font-family: "DistantGalaxy";
+  src: local("DistantGalaxy"), url("~src/assets/fonts/SfDistantGalaxyAltoutline-e2Bp.ttf") format("truetype");
+}

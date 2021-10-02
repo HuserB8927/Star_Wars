@@ -157,7 +157,7 @@ export class CharactersComponent implements OnInit {
     this.simulationService.simulateFight(this.opponents.value).subscribe(
       resp => {
 
-        this.router.navigate(['/simulation' + '/' + resp]);
+        this.router.navigate(['/simulation' + '/' + this.charactersToFight[0] +"-"+ this.charactersToFight[1]]);
 
       },
       err => {
