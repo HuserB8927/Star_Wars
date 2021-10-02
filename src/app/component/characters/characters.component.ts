@@ -4,7 +4,7 @@ import {CharacterService} from "../../service/character.service";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SimulationService} from "../../service/simulation.service";
-import {SimulationDetailsModel} from "../../model/simulationDetails.model";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-characters',
@@ -15,12 +15,12 @@ export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
   charactersToFight: string[] = [];
-  simulation: SimulationDetailsModel;
-
+  opponents: FormGroup;
 
   constructor(private characterService: CharacterService,
               private router: Router,
-              private simulationService: SimulationService) {
+              private simulationService: SimulationService,
+              private formBuilder: FormBuilder) {
 
     this.characterService.getCharacters().subscribe(
       resp => {
@@ -114,33 +114,37 @@ export class CharactersComponent implements OnInit {
 
   }
 
-  choseCharacter(name: string) {
+  choseCharacter(id: string) {
 
 
-    this.charactersToFight.push(name);
-    console.log(name)
+    this.charactersToFight.push(id);
+    console.log(id)
 
     if (this.charactersToFight.length > 2) {
       alert("You can chose only two characters");
     } else {
       for (let i = 0; i < this.charactersToFight.length - 1; i++) {
-        let sideOne = this.findCharacterByName(this.charactersToFight[i]);
-        let sideTwo = this.findCharacterByName(this.charactersToFight[i + 1]);
+        let sideOne = this.findCharacterById(this.charactersToFight[i]);
+        let sideTwo = this.findCharacterById(this.charactersToFight[i + 1]);
         if (sideOne === sideTwo) {
           console.error("Same sides can not fight with each other")
           this.charactersToFight.splice(1, 1);
         } else {
-          console.log(this.charactersToFight);
+
+          this.opponents = this.formBuilder.group({
+            dark: [this.charactersToFight[0],],
+            light: [this.charactersToFight[1]]
+          });
         }
       }
     }
   }
 
-  findCharacterByName(name: string): any {
+  findCharacterById(id: string): any {
 
     for (let i = 0; i < this.characters.length; i++) {
 
-      if (this.characters[i].name === name) {
+      if (this.characters[i].id === id) {
 
         return this.characters[i].side;
       }
@@ -150,17 +154,15 @@ export class CharactersComponent implements OnInit {
 
   goToFight() {
 
-    this.simulationService.simulateFight(this.simulation).subscribe(
+    this.simulationService.simulateFight(this.opponents.value).subscribe(
       resp => {
 
-
-        console.log(resp);
+        this.router.navigate(['/simulation' + '/' + resp]);
 
       },
       err => {
         CharactersComponent.handleError(err);
       }
     )
-    this.router.navigate(['/simulation'])
   }
 }
