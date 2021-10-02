@@ -36,7 +36,7 @@
           <div>
 
             <label style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif; font-size: 90px; color: white"
-                   class="form-check-label;">{{characters[userIndex].name}}</label>
+                   class="form-check-label;" [innerHTML]="characters[userIndex].name"></label>
           </div>
           <div>
             <a class="btn btn-outline-warning"
@@ -45,7 +45,7 @@
                color: white;
                margin-top: 20px;
                margin-bottom: 20px"
-               (click)="choseCharacter(characters[userIndex].id)">Kiválasztom</a>
+               (click)="choseCharacter(characters[userIndex].name)">Kiválasztom</a>
           </div>
 
           <div>
@@ -72,13 +72,14 @@
         </div>
 
       </div>
-    </div>
-    <div *ngIf="charactersToFight.length == 2" class="center">
+      <div *ngIf="charactersToFight.length == 2" class="center-fight">
 
-      <a *ngIf="charactersToFight.length" class="btn" style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif;
+        <a class="btn" style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif;
               font-size: 20px;
               background-image: linear-gradient(#00D2FF, #FF3232);" (click)="goToFight()">KÜZDELEM SZMULÁLÁSA</a>
+      </div>
     </div>
+
   </div>
 
 </div>

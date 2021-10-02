@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {SimulationDetailsModel} from "../model/simulationDetails.model";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,7 +18,8 @@ export class SimulationService {
 
   constructor(private http: HttpClient) { }
 
-  simulateFight(): Observable<any> {
-    return this.http.post('https://developer.webstar.hu/rest/frontend-felveteli/simulate/', httpOptions);
+  simulateFight(simulation: SimulationDetailsModel): Observable<any> {
+    return this.http.post('https://developer.webstar.hu/rest/frontend-felveteli/simulate/', simulation, httpOptions);
   }
+
 }

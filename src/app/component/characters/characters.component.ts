@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CharacterListItemModel} from "../../model/characterListItem.model";
 import {CharacterService} from "../../service/character.service";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-
+import {SimulationService} from "../../service/simulation.service";
+import {SimulationDetailsModel} from "../../model/simulationDetails.model";
 
 @Component({
   selector: 'app-characters',
@@ -14,10 +15,13 @@ export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
   charactersToFight: string[] = [];
+  simulation: SimulationDetailsModel;
 
 
   constructor(private characterService: CharacterService,
-              private router: Router) {
+              private router: Router,
+              private simulationService: SimulationService) {
+
     this.characterService.getCharacters().subscribe(
       resp => {
         this.characters = resp.characters;
@@ -46,6 +50,8 @@ export class CharactersComponent implements OnInit {
       console.error({"error": "Nincs ApplicantId"});
     } else if (error.status === 405) {
       console.error({"error": "Method Not Allowed"});
+    } else if (error.status === 500) {
+      console.log("error: Azonos oldalon álló karakterek nem küzdenek egymással.")
     }
   }
 
@@ -108,15 +114,53 @@ export class CharactersComponent implements OnInit {
 
   }
 
-  choseCharacter(id: string) {
-   this.charactersToFight.push(id);
+  choseCharacter(name: string) {
 
-   if (this.charactersToFight.length > 2) {
-     alert("You can chose only two characters");
-   }
+
+    this.charactersToFight.push(name);
+    console.log(name)
+
+    if (this.charactersToFight.length > 2) {
+      alert("You can chose only two characters");
+    } else {
+      for (let i = 0; i < this.charactersToFight.length - 1; i++) {
+        let sideOne = this.findCharacterByName(this.charactersToFight[i]);
+        let sideTwo = this.findCharacterByName(this.charactersToFight[i + 1]);
+        if (sideOne === sideTwo) {
+          console.error("Same sides can not fight with each other")
+          this.charactersToFight.splice(1, 1);
+        } else {
+          console.log(this.charactersToFight);
+        }
+      }
+    }
   }
 
+  findCharacterByName(name: string): any {
+
+    for (let i = 0; i < this.characters.length; i++) {
+
+      if (this.characters[i].name === name) {
+
+        return this.characters[i].side;
+      }
+    }
+  }
+
+
   goToFight() {
+
+    this.simulationService.simulateFight(this.simulation).subscribe(
+      resp => {
+
+
+        console.log(resp);
+
+      },
+      err => {
+        CharactersComponent.handleError(err);
+      }
+    )
     this.router.navigate(['/simulation'])
   }
 }

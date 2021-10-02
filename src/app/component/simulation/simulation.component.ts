@@ -17,11 +17,11 @@ export class SimulationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.simulation();
+   /* this.simulation();*/
 
   }
 
-  simulation() {
+  /*simulation() {
 
     this.simulationService.simulateFight().subscribe(
       resp => {
@@ -31,7 +31,7 @@ export class SimulationComponent implements OnInit {
         SimulationComponent.handleError(err);
       }
     );
-  }
+  }*/
 
   private static handleError(error: HttpErrorResponse) {
     if (error.status === 400) {

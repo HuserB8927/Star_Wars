@@ -5,4 +5,5 @@ export interface CharacterListItemModel {
   power: string;
   description: string;
   url: string;
+  alt: string;
 }
