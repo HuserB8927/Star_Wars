@@ -1,18 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {SimulationService} from "../../service/simulation.service";
-
-
-@Component({
-  selector: 'app-simulation',
-  templateUrl: './simulation.component.html',
-  styleUrls: ['./simulation.component.scss']
-})
-export class SimulationComponent implements OnInit {
-
-  opponents: string;
-  opponentsArr: string[] = [];
- 
+export class Images {
 
   Images: Array<any> = [
     {
@@ -53,24 +39,4 @@ export class SimulationComponent implements OnInit {
       alt: 'yoda'
     }
   ]
-
-  constructor(private simulationService: SimulationService,
-              private route: ActivatedRoute) {
-
-    this.route.paramMap.subscribe(
-      (id) => {
-        this.opponents = String(id.get('id'));
-        this.opponentsArr = this.opponents.split("-");
-
-      }
-    )
-  }
-
-
-
-  ngOnInit(): void {
-
-
-
-  }
 }
