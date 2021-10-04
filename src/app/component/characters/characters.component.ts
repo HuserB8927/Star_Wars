@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SimulationService} from "../../service/simulation.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {Subject} from "rxjs";
+import {SimulationDetailsModel} from "../../model/simulationDetails.model";
 
 @Component({
   selector: 'app-characters',
@@ -16,6 +18,7 @@ export class CharactersComponent implements OnInit {
   characters: CharacterListItemModel[] = [];
   charactersToFight: string[] = [];
   opponents: FormGroup;
+
 
   constructor(private characterService: CharacterService,
               private router: Router,
@@ -154,11 +157,11 @@ export class CharactersComponent implements OnInit {
 
   goToFight() {
 
+    this.characterService.sendOpponents(this.charactersToFight);
+
     this.simulationService.simulateFight(this.opponents.value).subscribe(
       resp => {
-
-        this.router.navigate(['/simulation' + '/' + this.charactersToFight[0] +"-"+ this.charactersToFight[1]]);
-
+        this.router.navigate(['/simulation' + '/' + resp.simulationId + '/']);
       },
       err => {
         CharactersComponent.handleError(err);

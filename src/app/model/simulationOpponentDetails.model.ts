@@ -1,4 +1,3 @@
 export interface SimulationOpponentDetailsModel {
-  name: string;
-  url: string;
+  simulationId: string;
 }

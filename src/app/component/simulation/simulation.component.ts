@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {SimulationService} from "../../service/simulation.service";
-
+import {CharacterService} from "../../service/character.service";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-simulation',
@@ -11,66 +12,41 @@ import {SimulationService} from "../../service/simulation.service";
 export class SimulationComponent implements OnInit {
 
   opponents: string;
-  opponentsArr: string[] = [];
- 
+  fighters: string;
 
-  Images: Array<any> = [
-    {
-      src: "/assets/anakin.png",
-      alt: 'anakin',
-    }, {
-      src: '/assets/boba.png',
-      alt: 'boba'
-    }, {
-      src: '/assets/grievous.png',
-      alt: 'grievous'
-    }, {
-      src: '/assets/kenobi.png',
-      alt: 'kenobi'
-    }, {
-      src: '/assets/luke.png',
-      alt: 'luke'
-    }, {
-      src: '/assets/maul.png',
-      alt: 'maul'
-    }, {
-      src: '/assets/phasma.png',
-      alt: 'phasma'
-    }, {
-      src: '/assets/rey.png',
-      alt: 'rey'
-    }, {
-      src: '/assets/solo.png',
-      alt: 'solo'
-    }, {
-      src: '/assets/stormtrooper.png',
-      alt: 'stormtrooper'
-    }, {
-      src: '/assets/vader.png',
-      alt: 'vader'
-    }, {
-      src: '/assets/yoda.png',
-      alt: 'yoda'
-    }
-  ]
 
   constructor(private simulationService: SimulationService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private characterService: CharacterService) {
 
     this.route.paramMap.subscribe(
-      (id) => {
-        this.opponents = String(id.get('id'));
-        this.opponentsArr = this.opponents.split("-");
+      (simulationId) => {
+        this.opponents = String(simulationId.get('simulationId'));
 
+        /*for (let i = 0; i < this.Images.length - 1; i++) {
+          for (let j = 0; j < this.fighters.length - 1; j++) {
+
+            if (this.Images[i].alt === this.opponentsArr[0]) {
+              this.fighters[j].dark = this.Images[i].src;
+            }
+            if (this.Images[i + 1].alt === this.opponentsArr[1]) {
+              this.fighters[j + 1].dark = this.Images[i + 1].src;
+            }
+          }
+        }*/
       }
     )
   }
 
 
-
   ngOnInit(): void {
 
-
+    this.characterService.receiveOpponents().subscribe(
+      (subj) => {
+        this.fighters = subj;
+        console.log(this.fighters);
+      }
+    );
 
   }
 }

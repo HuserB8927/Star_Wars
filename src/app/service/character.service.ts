@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {CharacterListItemModel} from "../model/characterListItem.model";
+import {FormGroup} from "@angular/forms";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,10 +15,20 @@ const httpOptions = {
 })
 export class CharacterService {
 
+  fighterSubject = new Subject<string[]>();
+
   constructor(private http: HttpClient) {
   }
 
   getCharacters(): Observable<any> {
     return this.http.get('https://developer.webstar.hu/rest/frontend-felveteli/characters/', httpOptions);
+  }
+
+  sendOpponents(opponents: string[]) {
+    this.fighterSubject.next(opponents);
+  }
+
+  receiveOpponents(): Observable<any> {
+    return this.fighterSubject.asObservable();
   }
 }
