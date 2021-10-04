@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SimulationService} from "../../service/simulation.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Subject} from "rxjs";
 import {SimulationDetailsModel} from "../../model/simulationDetails.model";
+
 
 @Component({
   selector: 'app-characters',
@@ -17,13 +17,13 @@ export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
   charactersToFight: string[] = [];
-  opponents: FormGroup;
+  chosenDark: CharacterListItemModel;
+  chosenLight: CharacterListItemModel;
 
 
   constructor(private characterService: CharacterService,
               private router: Router,
-              private simulationService: SimulationService,
-              private formBuilder: FormBuilder) {
+              private simulationService: SimulationService) {
 
     this.characterService.getCharacters().subscribe(
       resp => {
@@ -121,27 +121,26 @@ export class CharactersComponent implements OnInit {
 
 
     this.charactersToFight.push(id);
-    console.log(id)
 
-    if (this.charactersToFight.length > 2) {
-      alert("You can chose only two characters");
-    } else {
-      for (let i = 0; i < this.charactersToFight.length - 1; i++) {
-        let sideOne = this.findCharacterById(this.charactersToFight[i]);
-        let sideTwo = this.findCharacterById(this.charactersToFight[i + 1]);
-        if (sideOne === sideTwo) {
-          console.error("Same sides can not fight with each other")
-          this.charactersToFight.splice(1, 1);
-        } else {
 
-          this.opponents = this.formBuilder.group({
-            dark: [this.charactersToFight[0],],
-            light: [this.charactersToFight[1]]
-          });
-        }
-      }
+    /*   if (this.charactersToFight.length > 2) {
+         alert("You can chose only two characters");
+       } else {
+         for (let i = 0; i < this.charactersToFight.length - 1; i++) {
+           let sideOne = this.findCharacterById(this.charactersToFight[i]);
+           let sideTwo = this.findCharacterById(this.charactersToFight[i + 1]);
+           if (sideOne === sideTwo) {
+             console.error("Same sides can not fight with each other")
+             this.charactersToFight.splice(1, 1);
+           } else {*/
+
+    if (this.characters[this.userIndex].side === "dark") {
+      this.chosenDark = this.characters[this.userIndex];
+    } else if (this.characters[this.userIndex].side === "light") {
+      this.chosenLight = this.characters[this.userIndex];
     }
   }
+
 
   findCharacterById(id: string): any {
 
@@ -157,11 +156,14 @@ export class CharactersComponent implements OnInit {
 
   goToFight() {
 
-    this.characterService.sendOpponents(this.charactersToFight);
-
-    this.simulationService.simulateFight(this.opponents.value).subscribe(
+    console.log(this.chosenDark);
+    this.simulationService.simulateFight(this.chosenDark, this.chosenLight).subscribe(
       resp => {
-        this.router.navigate(['/simulation' + '/' + resp.simulationId + '/']);
+
+        if (resp.hasOwnProperty("simulationId")) {
+
+          this.router.navigate(['/simulation']);
+        }
       },
       err => {
         CharactersComponent.handleError(err);

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SimulationDetailsModel} from "../model/simulationDetails.model";
 import {SimulationOpponentDetailsModel} from "../model/simulationOpponentDetails.model";
+import {CharacterListItemModel} from "../model/characterListItem.model";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,11 +17,19 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SimulationService {
+  darkSide: CharacterListItemModel;
+  lightSide: CharacterListItemModel;
 
   constructor(private http: HttpClient) { }
 
-  simulateFight(simulation: SimulationDetailsModel): Observable<SimulationOpponentDetailsModel> {
-    return this.http.post<SimulationOpponentDetailsModel>('https://developer.webstar.hu/rest/frontend-felveteli/simulate/', simulation, httpOptions);
+  simulateFight(dark: CharacterListItemModel, light: CharacterListItemModel): Observable<any> {
+
+    this.darkSide = dark;
+    this.lightSide = light;
+
+    let battle = {"dark": dark.id, "light": light.id};
+
+    return this.http.post('https://developer.webstar.hu/rest/frontend-felveteli/simulate/', battle);
   }
 
 }

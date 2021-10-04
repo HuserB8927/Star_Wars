@@ -7,7 +7,8 @@ import {SimulationComponent} from "./component/simulation/simulation.component";
 const routes: Routes = [
   {path: "", component: LoginComponent},
   {path: "characters", component: CharactersComponent},
-  {path: "simulation/:id", component: SimulationComponent}
+  {path: "simulation", component: SimulationComponent},
+  {path: "**", component: LoginComponent}
 ];
 
 @NgModule({

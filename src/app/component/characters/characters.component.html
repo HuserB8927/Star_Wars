@@ -67,10 +67,9 @@
         <img src="assets/arrow_circle.png" alt="" (click)="decreaseIndex();">
         <img class="flip" src="assets/arrow_circle.png" alt="" (click)="increaseIndex();">
         </div>
-        <div *ngFor="let i of Images | slice:userIndex:userIndex+1">
-          <img class="imgs" [src]="i.src" [alt]="i.alt">
+        <div *ngFor="let char of characters | slice:userIndex:userIndex+1">
+          <img class="imgs" src="assets/{{char.id}}.png" alt="{{char.id}}">
         </div>
-
       </div>
       <div *ngIf="charactersToFight.length == 2" class="center-fight">
 
