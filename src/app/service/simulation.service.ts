@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {SimulationDetailsModel} from "../model/simulationDetails.model";
-import {SimulationOpponentDetailsModel} from "../model/simulationOpponentDetails.model";
 import {CharacterListItemModel} from "../model/characterListItem.model";
 
 const httpOptions = {
@@ -26,6 +24,8 @@ export class SimulationService {
 
     this.darkSide = dark;
     this.lightSide = light;
+
+    console.log(dark.id);
 
     let battle = {"dark": dark.id, "light": light.id};
 
