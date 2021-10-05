@@ -67,23 +67,23 @@
       </div>
     </div>
     <div class="row" *ngIf="winner">
-    <div class="col-4"></div>
-    <div class="col-4">
-      <div *ngIf="winner">
-        <div class="fighters-name">
-         {{winnerCharacterName}}
-        </div>
-        <div>
-          <img class="imgs" src="assets/{{winner.id}}.png" alt="">
-        </div>
-        <a class="btn btn-warning center"
-           style="font-family: 'PoppinBold', Arial, Helvetica, sans-serif;
+      <div class="col-4"></div>
+      <div class="col-4">
+        <div *ngIf="winner">
+          <div class="fighters-name">
+            {{winnerCharacterName}}
+          </div>
+          <div>
+            <img class="imgs" src="assets/{{winner.id}}.png" alt="">
+          </div>
+          <a class="btn btn-warning center"
+             style="font-family: 'PoppinBold', Arial, Helvetica, sans-serif;
                font-size: 16px;
                color: black;"
-           (click)="backToTheShip()">Vissza a fedélzetre</a>
+             (click)="backToTheShip()">Vissza a fedélzetre</a>
+        </div>
       </div>
-    </div>
-    <div class="col-4"></div>
+      <div class="col-4"></div>
     </div>
   </div>
 </div>

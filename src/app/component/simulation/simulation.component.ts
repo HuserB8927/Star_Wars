@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SimulationService} from "../../service/simulation.service";
 import {CharacterListItemModel} from "../../model/characterListItem.model";
-import {CharactersComponent} from "../characters/characters.component";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-simulation',
@@ -42,7 +41,6 @@ export class SimulationComponent implements OnInit {
     let replace = /<br>/gi;
     this.darkSideName = this.darkSide.name.replace(replace, ' ');
     this.lightSideName = this.lightSide.name.replace(replace, ' ');
-
 
 
     this.startFight().then(() =>
