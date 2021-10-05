@@ -18,7 +18,8 @@ export class SimulationService {
   darkSide: CharacterListItemModel;
   lightSide: CharacterListItemModel;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   simulateFight(dark: CharacterListItemModel, light: CharacterListItemModel): Observable<any> {
 

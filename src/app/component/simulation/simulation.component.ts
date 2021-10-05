@@ -1,9 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
 import {SimulationService} from "../../service/simulation.service";
-import {CharacterService} from "../../service/character.service";
-import {FormGroup} from "@angular/forms";
-import {SimulationDetailsModel} from "../../model/simulationDetails.model";
 import {CharacterListItemModel} from "../../model/characterListItem.model";
 
 @Component({
@@ -13,16 +9,16 @@ import {CharacterListItemModel} from "../../model/characterListItem.model";
 })
 export class SimulationComponent implements OnInit {
 
-  opponents: string;
-  fighters: string;
 
+  characterHP: number;
   darkSide: CharacterListItemModel;
-  lightSide: SimulationDetailsModel;
+  lightSide: CharacterListItemModel;
+  winner: CharacterListItemModel;
+  checkIfCharactersAlive = true;
+  fighters: string[] = [];
 
 
-  constructor(private simulationService: SimulationService,
-              private route: ActivatedRoute,
-              private characterService: CharacterService) {
+  constructor(private simulationService: SimulationService) {
 
     this.darkSide = this.simulationService.darkSide;
   }
@@ -30,12 +26,37 @@ export class SimulationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.characterService.receiveOpponents().subscribe(
-      (subj) => {
-        this.fighters = subj;
-        console.log(this.fighters );
-      }
-    );
+  }
 
+  async startFight() {
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    while (this.checkIfCharactersAlive) {
+
+      this.startRound();
+
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+  }
+
+  startRound() {
+
+    let attacker = this.decideAttacker();
+    let defender = '';
+
+  }
+
+  decideAttacker() {
+
+    let dark = this.darkSide.name;
+    let light = this.lightSide.name;
+
+    this.fighters.push(dark);
+    this.fighters.push(light);
+
+    let select = Math.floor(Math.random() * this.fighters.length);
+
+    return this.fighters[select];
   }
 }

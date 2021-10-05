@@ -45,7 +45,9 @@
                color: white;
                margin-top: 20px;
                margin-bottom: 20px"
-               (click)="choseCharacter(characters[userIndex].id)">Kiválasztom</a>
+               (click)="choseCharacter()"
+               [ngClass]="{'chosenCharacter' : chosenDark === characters[userIndex] ||
+                                               chosenLight === characters[userIndex]}">Kiválasztom</a>
           </div>
 
           <div>
@@ -64,8 +66,8 @@
       </div>
       <div class="col-6">
         <div class="align-right">
-        <img src="assets/arrow_circle.png" alt="" (click)="decreaseIndex();">
-        <img class="flip" src="assets/arrow_circle.png" alt="" (click)="increaseIndex();">
+          <img src="assets/arrow_circle.png" alt="" (click)="decreaseIndex();">
+          <img class="flip" src="assets/arrow_circle.png" alt="" (click)="increaseIndex();">
         </div>
         <div *ngFor="let char of characters | slice:userIndex:userIndex+1">
           <img class="imgs" src="assets/{{char.id}}.png" alt="{{char.id}}">

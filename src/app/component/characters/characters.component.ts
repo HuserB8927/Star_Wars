@@ -117,29 +117,22 @@ export class CharactersComponent implements OnInit {
 
   }
 
-  choseCharacter(id: string) {
+  /*choseCharacter(id: string) {*/
 
 
-    this.charactersToFight.push(id);
+  //this.charactersToFight.push(id);
 
 
-    /*   if (this.charactersToFight.length > 2) {
-         alert("You can chose only two characters");
-       } else {
-         for (let i = 0; i < this.charactersToFight.length - 1; i++) {
-           let sideOne = this.findCharacterById(this.charactersToFight[i]);
-           let sideTwo = this.findCharacterById(this.charactersToFight[i + 1]);
-           if (sideOne === sideTwo) {
-             console.error("Same sides can not fight with each other")
-             this.charactersToFight.splice(1, 1);
-           } else {*/
-
-    if (this.characters[this.userIndex].side === "dark") {
-      this.chosenDark = this.characters[this.userIndex];
-    } else if (this.characters[this.userIndex].side === "light") {
-      this.chosenLight = this.characters[this.userIndex];
-    }
-  }
+  /*   if (this.charactersToFight.length > 2) {
+       alert("You can chose only two characters");
+     } else {
+       for (let i = 0; i < this.charactersToFight.length - 1; i++) {
+         let sideOne = this.findCharacterById(this.charactersToFight[i]);
+         let sideTwo = this.findCharacterById(this.charactersToFight[i + 1]);
+         if (sideOne === sideTwo) {
+           console.error("Same sides can not fight with each other")
+           this.charactersToFight.splice(1, 1);
+         } else {*/
 
 
   findCharacterById(id: string): any {
@@ -157,6 +150,8 @@ export class CharactersComponent implements OnInit {
   goToFight() {
 
     console.log(this.chosenDark);
+    console.log(this.chosenLight);
+
     this.simulationService.simulateFight(this.chosenDark, this.chosenLight).subscribe(
       resp => {
 
@@ -169,5 +164,16 @@ export class CharactersComponent implements OnInit {
         CharactersComponent.handleError(err);
       }
     )
+  }
+
+  choseCharacter() {
+
+    if (this.characters[this.userIndex].side === "dark") {
+      this.chosenDark = this.characters[this.userIndex];
+      console.log(this.chosenDark)
+    } else if (this.characters[this.userIndex].side === "light") {
+      this.chosenLight = this.characters[this.userIndex];
+      console.log(this.chosenLight)
+    }
   }
 }
