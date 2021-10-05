@@ -19,7 +19,12 @@
     </div>
     <div class="row">
       <div class="col-4">
-        <img class="imgs" src="/assets/{{darkSide.id}}.png" alt="{{darkSide.id}}">
+        <div class="side-text">
+          <p>
+            {{darkSide.side}}
+          </p>
+        </div>
+        <img class="imgs" src="/assets/{{darkSide.id}}.png" alt="">
       </div>
       <div class="col-4">
         <div>
@@ -29,15 +34,30 @@
         </div>
       </div>
       <div class="col-4">
+        <div class="side-text">
+          <p>
+            {{lightSide.side}}
+          </p>
+        </div>
         <img class="imgs" src="/assets/{{lightSide.id}}.png" alt="{{lightSide.id}}">
       </div>
     </div>
     <div class="row">
       <div class="col-6">
-        <p><ngb-progressbar type="warning" textType="dark" [value]="100" [showValue]="true"></ngb-progressbar></p>
+        <div class="fighters-name">
+          <p>{{darkSideName}}</p>
+        </div>
+        <p>
+          <ngb-progressbar type="warning" textType="dark" [value]="darkSideHP" [showValue]="true"></ngb-progressbar>
+        </p>
       </div>
       <div class="col-6">
-        <p><ngb-progressbar type="warning" textType="dark" [value]="100" [showValue]="true"></ngb-progressbar></p>
+        <div class="fighters-name">
+          <p>{{lightSideName}}</p>
+        </div>
+        <p>
+          <ngb-progressbar type="warning" textType="dark" [value]="lightSideHP" [showValue]="true"></ngb-progressbar>
+        </p>
       </div>
     </div>
   </div>

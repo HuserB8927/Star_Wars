@@ -6,7 +6,6 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {SimulationService} from "../../service/simulation.service";
 
 
-
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
@@ -116,40 +115,7 @@ export class CharactersComponent implements OnInit {
 
   }
 
-  /*choseCharacter(id: string) {*/
-
-
-  //this.charactersToFight.push(id);
-
-
-  /*   if (this.charactersToFight.length > 2) {
-       alert("You can chose only two characters");
-     } else {
-       for (let i = 0; i < this.charactersToFight.length - 1; i++) {
-         let sideOne = this.findCharacterById(this.charactersToFight[i]);
-         let sideTwo = this.findCharacterById(this.charactersToFight[i + 1]);
-         if (sideOne === sideTwo) {
-           console.error("Same sides can not fight with each other")
-           this.charactersToFight.splice(1, 1);
-         } else {*/
-
-
-  findCharacterById(id: string): any {
-
-    for (let i = 0; i < this.characters.length; i++) {
-
-      if (this.characters[i].id === id) {
-
-        return this.characters[i].side;
-      }
-    }
-  }
-
-
   goToFight() {
-
-    console.log(this.chosenDark);
-    console.log(this.chosenLight);
 
     this.simulationService.simulateFight(this.chosenDark, this.chosenLight).subscribe(
       resp => {
@@ -166,15 +132,17 @@ export class CharactersComponent implements OnInit {
   }
 
   choseCharacter() {
-    console.log(this.userIndex)
 
-    if (this.characters[this.userIndex].side === "DARK") {
+    if (this.characters[this.userIndex].side === 'DARK') {
       this.chosenDark = this.characters[this.userIndex];
       console.log(this.chosenDark)
-    } else if (this.characters[this.userIndex].side === "LIGHT") {
+    } else if (this.characters[this.userIndex].side === 'LIGHT') {
       this.chosenLight = this.characters[this.userIndex];
       console.log(this.chosenLight)
     }
-    this.simulation = true;
+    if (this.chosenDark != undefined && this.chosenLight != undefined) {
+
+      this.simulation = true;
+    }
   }
 }

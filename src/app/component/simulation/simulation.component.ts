@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SimulationService} from "../../service/simulation.service";
 import {CharacterListItemModel} from "../../model/characterListItem.model";
+import {CharactersComponent} from "../characters/characters.component";
 
 @Component({
   selector: 'app-simulation',
@@ -10,53 +11,106 @@ import {CharacterListItemModel} from "../../model/characterListItem.model";
 export class SimulationComponent implements OnInit {
 
 
-  characterHP: number;
+  darkSideHP: number = 100;
+  lightSideHP: number = 100;
   darkSide: CharacterListItemModel;
   lightSide: CharacterListItemModel;
   winner: CharacterListItemModel;
   checkIfCharactersAlive = true;
-  fighters: string[] = [];
+  fighters: CharacterListItemModel[] = [];
+
+  darkSideName: string;
+  lightSideName: string;
+  firstAttacker: CharacterListItemModel;
 
 
   constructor(private simulationService: SimulationService) {
 
     this.darkSide = this.simulationService.darkSide;
+    this.lightSide = this.simulationService.lightSide;
   }
 
 
   ngOnInit(): void {
 
+    let replace = /<br>/gi;
+
+    this.darkSideName = this.darkSide.name.replace(replace, ' ');
+    this.lightSideName = this.lightSide.name.replace(replace, ' ');
+
+    this.startFight().then(r => console.log(r));
+
   }
 
   async startFight() {
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     while (this.checkIfCharactersAlive) {
 
       this.startRound();
 
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+    }
+    if (!this.checkIfCharactersAlive) {
+      if (this.darkSideHP <= 0) {
+        this.winner = this.lightSide;
+      } else {
+        this.winner = this.darkSide;
+      }
     }
   }
 
   startRound() {
 
-    let attacker = this.decideAttacker();
-    let defender = '';
+    let firstAttacker = this.decideAttacker();
+    let defender;
+
+    if (firstAttacker.side === 'dark') {
+      defender = this.lightSide;
+    } else if (firstAttacker.side === 'light') {
+      defender = this.darkSide
+    }
+
+    let damage = Math.floor(Math.random() * 20);
+
+    this.takeHit(firstAttacker, defender, damage);
 
   }
 
-  decideAttacker() {
+  takeHit(firstAttacker: CharacterListItemModel, defender: CharacterListItemModel, damage: number) {
 
-    let dark = this.darkSide.name;
-    let light = this.lightSide.name;
+
+    if (firstAttacker.side === 'DARK') {
+      this.lightSideHP = this.lightSideHP - damage;
+
+      if (this.lightSideHP < 0) {
+        this.checkIfCharactersAlive = false;
+
+      }
+    } else if (firstAttacker.side === 'LIGHT') {
+      this.darkSideHP = this.darkSideHP - damage;
+
+      if (this.darkSideHP < 0) {
+        this.checkIfCharactersAlive = false;
+      }
+    }
+  }
+
+
+  decideAttacker(): CharacterListItemModel {
+
+    let dark = this.darkSide;
+    let light = this.lightSide;
 
     this.fighters.push(dark);
     this.fighters.push(light);
 
     let select = Math.floor(Math.random() * this.fighters.length);
 
-    return this.fighters[select];
+    this.firstAttacker = this.fighters[select];
+
+    return this.firstAttacker;
   }
 }
