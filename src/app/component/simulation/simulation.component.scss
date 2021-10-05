@@ -29,3 +29,13 @@
   font-family: "PoppinsBlack", sans-serif;
   font-size: 24px;
 }
+.block-center {
+  position: absolute;
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

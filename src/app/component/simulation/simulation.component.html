@@ -12,13 +12,19 @@
       </div>
     </div>
     <hr>
-    <div>
+    <div *ngIf="!winner">
       <p style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif; font-size: 60px; text-align: center">
         A tudás legyen veled!
       </p>
     </div>
+    <div *ngIf="winner">
+      <p style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif; font-size: 60px; text-align: center"
+         [innerHTML]="winnerText">
+
+      </p>
+    </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-4" *ngIf="!winner">
         <div class="side-text">
           <p>
             {{darkSide.side}}
@@ -26,14 +32,14 @@
         </div>
         <img class="imgs" src="/assets/{{darkSide.id}}.png" alt="">
       </div>
-      <div class="col-4">
+      <div class="col-4" *ngIf="!winner">
         <div>
           <p style="font-family: DistantGalaxy, Arial, Helvetica, sans-serif; font-size: 150px; text-align: center">
             vs
           </p>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4" *ngIf="!winner">
         <div class="side-text">
           <p>
             {{lightSide.side}}
@@ -42,7 +48,7 @@
         <img class="imgs" src="/assets/{{lightSide.id}}.png" alt="{{lightSide.id}}">
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!winner">
       <div class="col-6">
         <div class="fighters-name">
           <p>{{darkSideName}}</p>
@@ -59,6 +65,25 @@
           <ngb-progressbar type="warning" textType="dark" [value]="lightSideHP" [showValue]="true"></ngb-progressbar>
         </p>
       </div>
+    </div>
+    <div class="row" *ngIf="winner">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div *ngIf="winner">
+        <div class="fighters-name">
+         {{winnerCharacterName}}
+        </div>
+        <div>
+          <img class="imgs" src="assets/{{winner.id}}.png" alt="">
+        </div>
+        <a class="btn btn-warning center"
+           style="font-family: 'PoppinBold', Arial, Helvetica, sans-serif;
+               font-size: 16px;
+               color: black;"
+           (click)="backToTheShip()">Vissza a fedélzetre</a>
+      </div>
+    </div>
+    <div class="col-4"></div>
     </div>
   </div>
 </div>

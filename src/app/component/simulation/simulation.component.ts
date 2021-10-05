@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SimulationService} from "../../service/simulation.service";
 import {CharacterListItemModel} from "../../model/characterListItem.model";
 import {CharactersComponent} from "../characters/characters.component";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-simulation',
@@ -18,39 +19,46 @@ export class SimulationComponent implements OnInit {
   winner: CharacterListItemModel;
   checkIfCharactersAlive = true;
   fighters: CharacterListItemModel[] = [];
+  winnerText: string = 'A csata nyertese';
+  winnerCharacterName: string;
+
 
   darkSideName: string;
   lightSideName: string;
   firstAttacker: CharacterListItemModel;
 
 
-  constructor(private simulationService: SimulationService) {
+  constructor(private simulationService: SimulationService,
+              private router: Router) {
 
     this.darkSide = this.simulationService.darkSide;
     this.lightSide = this.simulationService.lightSide;
+
   }
 
 
   ngOnInit(): void {
 
     let replace = /<br>/gi;
-
     this.darkSideName = this.darkSide.name.replace(replace, ' ');
     this.lightSideName = this.lightSide.name.replace(replace, ' ');
 
-    this.startFight().then(r => console.log(r));
+
+
+    this.startFight().then(() =>
+      this.winnerCharacterName = this.winner.name.replace(replace, ' '));
 
   }
 
   async startFight() {
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     while (this.checkIfCharactersAlive) {
 
       this.startRound();
 
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
     }
     if (!this.checkIfCharactersAlive) {
@@ -73,7 +81,7 @@ export class SimulationComponent implements OnInit {
       defender = this.darkSide
     }
 
-    let damage = Math.floor(Math.random() * 20);
+    let damage = Math.floor(Math.random() * 15);
 
     this.takeHit(firstAttacker, defender, damage);
 
@@ -112,5 +120,9 @@ export class SimulationComponent implements OnInit {
     this.firstAttacker = this.fighters[select];
 
     return this.firstAttacker;
+  }
+
+  backToTheShip() {
+    this.router.navigate(['/characters']);
   }
 }
