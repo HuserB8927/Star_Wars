@@ -30,7 +30,7 @@ export class SimulationService {
 
     let battle = {"dark": dark.id, "light": light.id};
 
-    return this.http.post('https://developer.webstar.hu/rest/frontend-felveteli/simulate/', battle);
+    return this.http.post('https://developer.webstar.hu/rest/frontend-felveteli/simulate/', battle, httpOptions);
   }
 
 }

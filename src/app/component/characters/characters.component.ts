@@ -4,8 +4,7 @@ import {CharacterService} from "../../service/character.service";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SimulationService} from "../../service/simulation.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {SimulationDetailsModel} from "../../model/simulationDetails.model";
+
 
 
 @Component({
@@ -16,9 +15,9 @@ import {SimulationDetailsModel} from "../../model/simulationDetails.model";
 export class CharactersComponent implements OnInit {
 
   characters: CharacterListItemModel[] = [];
-  charactersToFight: string[] = [];
   chosenDark: CharacterListItemModel;
   chosenLight: CharacterListItemModel;
+  simulation: boolean = false;
 
 
   constructor(private characterService: CharacterService,
@@ -167,13 +166,15 @@ export class CharactersComponent implements OnInit {
   }
 
   choseCharacter() {
+    console.log(this.userIndex)
 
-    if (this.characters[this.userIndex].side === "dark") {
+    if (this.characters[this.userIndex].side === "DARK") {
       this.chosenDark = this.characters[this.userIndex];
       console.log(this.chosenDark)
-    } else if (this.characters[this.userIndex].side === "light") {
+    } else if (this.characters[this.userIndex].side === "LIGHT") {
       this.chosenLight = this.characters[this.userIndex];
       console.log(this.chosenLight)
     }
+    this.simulation = true;
   }
 }
