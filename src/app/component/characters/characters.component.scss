@@ -4,28 +4,15 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 110%;
+  height: 100%;
   width: 100%;
 }
 
-@font-face {
-  font-family: "PoppinBold";
-  src: local("PoppinBold"), url("~src/assets/fonts/Poppins-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "PoppinsBlack";
-  src: local("PoppinsBlack"), url("~src/assets/fonts/Poppins-Black.ttf") format("truetype");
-}
-@font-face {
-  font-family: "PoppinsRegular";
-  src: local("PoppinsRegular"), url("~src/assets/fonts/Poppins-Regular.ttf") format("truetype");
-}
-
 .imgs {
-  height:90%;
+  height: 90%;
   width: 90%;
 }
+
 .center {
   display: flex;
   justify-content: center;
@@ -33,23 +20,32 @@
   margin-top: 20px;
 
 }
+
 .center-fight {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
+
 .align-right {
   display: flex;
   justify-content: right;
   align-items: end;
 }
-.flip {
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    margin-left: 20px;
 
+.flip {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  margin-left: 20px;
+
+}
+
+@media (min-width: 768px) {
+  .bg_2 {
+    height: 100vh;
+  }
 }

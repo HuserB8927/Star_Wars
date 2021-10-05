@@ -1,4 +1,4 @@
-<div class="bg_1 mat-typography" style="text-align: center;">
+<div class="my-container" style="text-align: center;">
   <h1 style="font-family: StarWars, Arial, Helvetica, sans-serif;
            font-size: 30px;
            color: white;
@@ -10,7 +10,6 @@
            color: white; margin-top: 60px; margin-bottom: 60px">FRONTEND</h1>
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <div class="wrapper fadeInDown">
-    <div id="formContent">
       <form [formGroup]="form">
         <label class="wrapper" style="color: white">Felhasználónév</label>
         <input class="fadeIn second" name="username" formControlName="username" type="text" id="username">
@@ -23,12 +22,12 @@
                id="password">
         <div>
           <small
-          *ngIf="!form.get('password').valid && form.get('password').touched" class="text-danger">
-          Please enter your password</small></div>
+            *ngIf="!form.get('password').valid && form.get('password').touched" class="text-danger">
+            Please enter your password</small>
+        </div>
         <input style="margin-top: 30px" type="submit" class="fadeIn fourth" value="Belépés" [disabled]="!form.valid" (click)="onSubmit()">
         </div>
       </form>
-    </div>
   </div>
 </div>
 </div>

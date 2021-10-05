@@ -1,22 +1,11 @@
-
-.bg_1 {
-  background-image: url("~src/assets/bg_1.jpg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.my-container {
   height: 100%;
   width: 100%;
-}
+  display: flex;
+  flex-flow: column;
+  background-image: url("~src/assets/bg_1.png");
+  background-size: cover;
 
-@font-face {
-  font-family: "StarWars";
-  src: local("StarWars"), url("~src/assets/fonts/Starjedi.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "DistantGalaxy";
-  src: local("DistantGalaxy"), url("~src/assets/fonts/SfDistantGalaxyAltoutline-e2Bp.ttf") format("truetype");
 }
 
 .wrapper {
@@ -26,14 +15,12 @@
   justify-content: center;
   width: 100%;
   min-height: 100%;
-  padding: 20px;
 }
 
 #formContent {
-  padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  position: relative;
+
+
+
   text-align: center;
 }
 

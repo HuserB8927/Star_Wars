@@ -72,15 +72,13 @@
         <div *ngFor="let char of characters | slice:userIndex:userIndex+1">
           <img class="imgs" src="assets/{{char.id}}.png" alt="{{char.id}}">
         </div>
-      </div>
-      <div *ngIf="simulation" class="center-fight">
+        <div *ngIf="simulation" class="center-fight">
 
-        <a class="btn" style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif;
+          <a class="btn" style="font-family: 'Star Jedi', Arial, Helvetica, sans-serif;
               font-size: 20px;
               background-image: linear-gradient(#00D2FF, #FF3232);" (click)="goToFight()">KÜZDELEM SZMULÁLÁSA</a>
+        </div>
       </div>
     </div>
-
   </div>
-
 </div>
