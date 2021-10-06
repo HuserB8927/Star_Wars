@@ -7,10 +7,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Login details:
+```java
 {
-    "username":"frontend@webstar.hu",
+    "username":"frontend@webstar.hu",<br>
     "password":"s9@:8BpuC]*Q,e,A"
 }
+```
 
 ## Code scaffolding
 
