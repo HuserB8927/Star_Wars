@@ -9,7 +9,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Login details:
 ```java
 {
-    "username":"frontend@webstar.hu",<br>
+    "username":"frontend@webstar.hu",
     "password":"s9@:8BpuC]*Q,e,A"
 }
 ```
