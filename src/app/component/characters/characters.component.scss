@@ -1,12 +1,10 @@
-.bg_2 {
-  background-image: url("~src/assets/bg_2.jpg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.my-container {
   height: 100%;
   width: 100%;
-
+  display: flex;
+  flex-flow: column;
+  background-image: url("~src/assets/bg_2.png");
+  background-size: cover;
 
 }
 
@@ -46,8 +44,6 @@
 
 }
 
-@media (min-width: 768px) {
-  .bg_2 {
-    height: 100vh;
-  }
+@media screen and (max-width: 600px) {
+
 }

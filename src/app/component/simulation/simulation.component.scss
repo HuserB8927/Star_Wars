@@ -1,11 +1,11 @@
-.bg_3 {
-  background-image: url("~src/assets/bg_3.jpg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.my-container {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-flow: column;
+  background-image: url("~src/assets/bg_3.png");
+  background-size: cover;
+
 }
 
 .imgs {
